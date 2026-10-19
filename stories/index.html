@@ -1,0 +1,394 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><title>Stories da Penteadeira</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<style>*{box-sizing:border-box}body{margin:0}img{max-width:100%}
+/* Layout: uma coluna de cartões por dia, imagem do story ao lado dos textos no desktop, empilhado no celular. */
+:root{
+  --bg:#FBF7FB; --surface:#FFFFFF; --fg:#1E1A1E; --muted:#7A6B78; --line:#EEE3ED;
+  --brand:#8A6386; --tint:#F3EAF2; --ok:#2F7D5B;
+  --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171316;--surface:#211B20;--fg:#F4EEF3;--muted:#B3A4B0;--line:#352C33;--brand:#C9A3C4;--tint:#2B2229;--ok:#6CC59A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171316;--surface:#211B20;--fg:#F4EEF3;--muted:#B3A4B0;--line:#352C33;--brand:#C9A3C4;--tint:#2B2229;--ok:#6CC59A;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top h1{font-size:26px;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+.top p{color:var(--muted);margin-top:6px;max-width:60ch}
+.steps{display:grid;gap:6px;margin-top:14px;padding:14px 16px;border-radius:14px;background:var(--tint);font-size:14px}
+.steps b{color:var(--brand)}
+.jump{display:flex;gap:6px;overflow-x:auto;margin:18px -2px 6px;padding:2px 2px 6px}
+.jump a{flex:none;min-width:40px;text-align:center;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;font-weight:700;font-variant-numeric:tabular-nums}
+.jump a.today{background:var(--brand);border-color:var(--brand);color:#fff}
+.jump a.isdone{color:var(--muted);text-decoration:line-through}
+.list{display:grid;gap:14px;margin-top:10px}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;scroll-margin-top:12px}
+.day.today{box-shadow:0 0 0 2px var(--brand)}
+.day.isdone{opacity:.55}
+.dh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.when{font-size:13px;color:var(--muted);font-weight:600}
+.dh h2{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.done{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;padding:8px 12px;border-radius:999px;background:var(--tint);cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--brand)}
+.body{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;margin-top:12px}
+.shot{margin:0}
+.shot img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
+.shot figcaption{font-size:12px;color:var(--muted);margin-top:6px;text-align:center}
+.info{min-width:0}
+.sticker{display:inline-block;font-size:13px;font-weight:800;color:var(--brand);background:var(--tint);padding:5px 10px;border-radius:8px}
+.copies{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:8px}
+.copies li{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"lab btn" "val btn";column-gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px}
+.lab{grid-area:lab;font-size:12px;color:var(--muted);font-weight:600}
+.val{grid-area:val;font-weight:700;overflow-wrap:anywhere}
+.cp{grid-area:btn;font:inherit;font-weight:700;font-size:14px;padding:9px 14px;border-radius:10px;border:0;background:var(--fg);color:var(--bg);cursor:pointer}
+.cp.ok{background:var(--ok);color:#fff}
+.cp:focus-visible,.done:focus-within,.jump a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.feed{margin-top:12px;font-size:13px;color:var(--muted)}
+.acts{display:grid;gap:8px;margin-top:10px}
+.ig,.dl{display:block;text-align:center;font:inherit;font-weight:700;font-size:14px;padding:11px 12px;border-radius:12px;cursor:pointer;text-decoration:none}
+.ig{border:0;background:var(--brand);color:#fff}
+.dl{border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.ig:focus-visible,.dl:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+@media (max-width:560px){.body{grid-template-columns:1fr}.shot{max-width:240px;margin:0 auto}}
+@media (prefers-reduced-motion:no-preference){.cp{transition:background .15s}}
+</style></head><body>
+<div class="wrap">
+  <section class="top">
+    <h1>Stories da Penteadeira</h1>
+    <p>Diário da minha mini penteadeira · @achadinnapromo · 20/10 a 03/11</p>
+    <div class="steps">
+      <span><b>1.</b> Toque e segure na imagem do dia e salve no celular.</span>
+      <span><b>2.</b> No Instagram, crie o story com essa imagem e adicione a figurinha indicada.</span>
+      <span><b>3.</b> Copie e cole cada texto na figurinha. Depois marque “Postado”.</span>
+    </div>
+  </section>
+  <nav class="jump" aria-label="Ir para o dia"><a href="#dia-1" data-day="1">1</a><a href="#dia-2" data-day="2">2</a><a href="#dia-3" data-day="3">3</a><a href="#dia-4" data-day="4">4</a><a href="#dia-5" data-day="5">5</a><a href="#dia-6" data-day="6">6</a><a href="#dia-7" data-day="7">7</a><a href="#dia-8" data-day="8">8</a><a href="#dia-9" data-day="9">9</a><a href="#dia-10" data-day="10">10</a><a href="#dia-11" data-day="11">11</a><a href="#dia-12" data-day="12">12</a><a href="#dia-13" data-day="13">13</a><a href="#dia-14" data-day="14">14</a><a href="#dia-15" data-day="15">15</a></nav>
+  <div class="list">
+<article class="day" id="dia-1" data-date="2026-10-20">
+  <header class="dh">
+    <div>
+      <p class="when">ter 20/10 · story às 12h</p>
+      <h2>Dia 1</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-1" data-day="1"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-01.jpg" alt="Story do dia 1" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-01.jpg" data-name="story-dia-01.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-01.jpg" download="story-dia-01.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha ENQUETE + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Pergunta</span><span class="val">Você acompanharia o diário da minha penteadeira?</span><button type="button" class="cp" data-text="Você acompanharia o diário da minha penteadeira?">Copiar</button></li><li><span class="lab">Opção 1</span><span class="val">Simmm 💜</span><button type="button" class="cp" data-text="Simmm 💜">Copiar</button></li><li><span class="lab">Opção 2</span><span class="val">Claro!</span><button type="button" class="cp" data-text="Claro!">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira</span><button type="button" class="cp" data-text="https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Ver a lista completa 💜</span><button type="button" class="cp" data-text="Ver a lista completa 💜">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · Decidi montar a minha mini penteadeira</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-2" data-date="2026-10-21">
+  <header class="dh">
+    <div>
+      <p class="when">qua 21/10 · story às 12h</p>
+      <h2>Dia 2</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-2" data-day="2"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-02.jpg" alt="Story do dia 2" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-02.jpg" data-name="story-dia-02.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-02.jpg" download="story-dia-02.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Repost do Reels + figurinha CAIXINHA + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Texto</span><span class="val">Saiu o Ep. 2: a base 👀</span><button type="button" class="cp" data-text="Saiu o Ep. 2: a base 👀">Copiar</button></li><li><span class="lab">Caixinha</span><span class="val">Onde você colocaria a sua penteadeira?</span><button type="button" class="cp" data-text="Onde você colocaria a sua penteadeira?">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://s.shopee.com.br/qkOTuIxxZ</span><button type="button" class="cp" data-text="https://s.shopee.com.br/qkOTuIxxZ">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Ver a penteadeira</span><button type="button" class="cp" data-text="Ver a penteadeira">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · Ep. 2: a base</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-3" data-date="2026-10-22">
+  <header class="dh">
+    <div>
+      <p class="when">qui 22/10 · story às 12h</p>
+      <h2>Dia 3</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-3" data-day="3"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-03.jpg" alt="Story do dia 3" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-03.jpg" data-name="story-dia-03.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-03.jpg" download="story-dia-03.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Link</span><span class="val">https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira</span><button type="button" class="cp" data-text="https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Minha lista completa 💜</span><button type="button" class="cp" data-text="Minha lista completa 💜">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Carrossel</strong> · Minha lista de compras</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-4" data-date="2026-10-23">
+  <header class="dh">
+    <div>
+      <p class="when">sex 23/10 · story às 12h</p>
+      <h2>Dia 4</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-4" data-day="4"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-04.jpg" alt="Story do dia 4" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-04.jpg" data-name="story-dia-04.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-04.jpg" download="story-dia-04.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha ENQUETE + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Pergunta</span><span class="val">Espelho redondo ou orgânico?</span><button type="button" class="cp" data-text="Espelho redondo ou orgânico?">Copiar</button></li><li><span class="lab">Opção 1</span><span class="val">Redondo</span><button type="button" class="cp" data-text="Redondo">Copiar</button></li><li><span class="lab">Opção 2</span><span class="val">Orgânico 💜</span><button type="button" class="cp" data-text="Orgânico 💜">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://s.shopee.com.br/7AeS1agNLi</span><button type="button" class="cp" data-text="https://s.shopee.com.br/7AeS1agNLi">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Ver o espelho</span><button type="button" class="cp" data-text="Ver o espelho">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · Ep. 3: o espelho</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-5" data-date="2026-10-24">
+  <header class="dh">
+    <div>
+      <p class="when">sáb 24/10 · story às 12h</p>
+      <h2>Dia 5</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-5" data-day="5"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-05.jpg" alt="Story do dia 5" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-05.jpg" data-name="story-dia-05.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-05.jpg" download="story-dia-05.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha EMOJI (barra deslizante) + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Pergunta</span><span class="val">Quanto você amou essa cadeira?</span><button type="button" class="cp" data-text="Quanto você amou essa cadeira?">Copiar</button></li><li><span class="lab">Emoji</span><span class="val">😍</span><button type="button" class="cp" data-text="😍">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://s.shopee.com.br/3g4ZpAv3bx</span><button type="button" class="cp" data-text="https://s.shopee.com.br/3g4ZpAv3bx">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Ver a cadeira</span><button type="button" class="cp" data-text="Ver a cadeira">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · Ep. 4: a cadeira</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-6" data-date="2026-10-25">
+  <header class="dh">
+    <div>
+      <p class="when">dom 25/10 · story às 12h</p>
+      <h2>Dia 6</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-6" data-day="6"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-06.jpg" alt="Story do dia 6" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-06.jpg" data-name="story-dia-06.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-06.jpg" download="story-dia-06.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha QUIZ (marque “Neutra” como a certa) + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Pergunta</span><span class="val">Qual luz é melhor pra fazer make?</span><button type="button" class="cp" data-text="Qual luz é melhor pra fazer make?">Copiar</button></li><li><span class="lab">Opção A</span><span class="val">Quente</span><button type="button" class="cp" data-text="Quente">Copiar</button></li><li><span class="lab">Opção B</span><span class="val">Neutra</span><button type="button" class="cp" data-text="Neutra">Copiar</button></li><li><span class="lab">Opção C</span><span class="val">Fria</span><button type="button" class="cp" data-text="Fria">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://s.shopee.com.br/6L5L2xivQ8</span><button type="button" class="cp" data-text="https://s.shopee.com.br/6L5L2xivQ8">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Ver a luminária</span><button type="button" class="cp" data-text="Ver a luminária">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · Ep. 5: a luz que faltava</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-7" data-date="2026-10-26">
+  <header class="dh">
+    <div>
+      <p class="when">seg 26/10 · story às 12h</p>
+      <h2>Dia 7</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-7" data-day="7"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-07.jpg" alt="Story do dia 7" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-07.jpg" data-name="story-dia-07.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-07.jpg" download="story-dia-07.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha CAIXINHA + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Caixinha</span><span class="val">O que não pode faltar na sua penteadeira?</span><button type="button" class="cp" data-text="O que não pode faltar na sua penteadeira?">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira</span><button type="button" class="cp" data-text="https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">O que já escolhi 💜</span><button type="button" class="cp" data-text="O que já escolhi 💜">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Carrossel</strong> · 1 semana montando: o que já escolhi</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-8" data-date="2026-10-27">
+  <header class="dh">
+    <div>
+      <p class="when">ter 27/10 · story às 12h</p>
+      <h2>Dia 8</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-8" data-day="8"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-08.jpg" alt="Story do dia 8" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-08.jpg" data-name="story-dia-08.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-08.jpg" download="story-dia-08.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Link</span><span class="val">https://s.shopee.com.br/5VWE2acJ0S</span><button type="button" class="cp" data-text="https://s.shopee.com.br/5VWE2acJ0S">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Ver o organizador</span><button type="button" class="cp" data-text="Ver o organizador">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · Ep. 6: hora de organizar a make</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-9" data-date="2026-10-28">
+  <header class="dh">
+    <div>
+      <p class="when">qua 28/10 · story às 12h</p>
+      <h2>Dia 9</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-9" data-day="9"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-09.jpg" alt="Story do dia 9" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-09.jpg" data-name="story-dia-09.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-09.jpg" download="story-dia-09.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha EMOJI (barra deslizante) + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Pergunta</span><span class="val">Nível de bagunça dos seus perfumes</span><button type="button" class="cp" data-text="Nível de bagunça dos seus perfumes">Copiar</button></li><li><span class="lab">Emoji</span><span class="val">😅</span><button type="button" class="cp" data-text="😅">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://s.shopee.com.br/9V2Mnub9Yg</span><button type="button" class="cp" data-text="https://s.shopee.com.br/9V2Mnub9Yg">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Ver o organizador giratório</span><button type="button" class="cp" data-text="Ver o organizador giratório">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · Ep. 7: o cantinho dos perfumes</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-10" data-date="2026-10-29">
+  <header class="dh">
+    <div>
+      <p class="when">qui 29/10 · story às 12h</p>
+      <h2>Dia 10</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-10" data-day="10"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-10.jpg" alt="Story do dia 10" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-10.jpg" data-name="story-dia-10.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-10.jpg" download="story-dia-10.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha ENQUETE + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Pergunta</span><span class="val">Sua gaveta hoje:</span><button type="button" class="cp" data-text="Sua gaveta hoje:">Copiar</button></li><li><span class="lab">Opção 1</span><span class="val">Antes 🙈</span><button type="button" class="cp" data-text="Antes 🙈">Copiar</button></li><li><span class="lab">Opção 2</span><span class="val">Depois ✨</span><button type="button" class="cp" data-text="Depois ✨">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://s.shopee.com.br/qkOTuIxxZ</span><button type="button" class="cp" data-text="https://s.shopee.com.br/qkOTuIxxZ">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Ver a penteadeira</span><button type="button" class="cp" data-text="Ver a penteadeira">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · Gaveta: antes e depois</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-11" data-date="2026-10-30">
+  <header class="dh">
+    <div>
+      <p class="when">sex 30/10 · story às 12h</p>
+      <h2>Dia 11</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-11" data-day="11"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-11.jpg" alt="Story do dia 11" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-11.jpg" data-name="story-dia-11.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-11.jpg" download="story-dia-11.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Repost do carrossel + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Texto</span><span class="val">Salva pra depois 📌</span><button type="button" class="cp" data-text="Salva pra depois 📌">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira</span><button type="button" class="cp" data-text="https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Os links das dicas</span><button type="button" class="cp" data-text="Os links das dicas">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Carrossel</strong> · 5 dicas pra penteadeira em espaço pequeno</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-12" data-date="2026-10-31">
+  <header class="dh">
+    <div>
+      <p class="when">sáb 31/10 · story às 12h</p>
+      <h2>Dia 12</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-12" data-day="12"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-12.jpg" alt="Story do dia 12" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-12.jpg" data-name="story-dia-12.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-12.jpg" download="story-dia-12.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha ENQUETE + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Pergunta</span><span class="val">Já errou o tom da base por causa da luz?</span><button type="button" class="cp" data-text="Já errou o tom da base por causa da luz?">Copiar</button></li><li><span class="lab">Opção 1</span><span class="val">Já 🙋‍♀️</span><button type="button" class="cp" data-text="Já 🙋‍♀️">Copiar</button></li><li><span class="lab">Opção 2</span><span class="val">Nunca</span><button type="button" class="cp" data-text="Nunca">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://s.shopee.com.br/6L5L2xivQ8</span><button type="button" class="cp" data-text="https://s.shopee.com.br/6L5L2xivQ8">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Ver a luminária</span><button type="button" class="cp" data-text="Ver a luminária">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · A luz muda a sua make</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-13" data-date="2026-11-01">
+  <header class="dh">
+    <div>
+      <p class="when">dom 01/11 · story às 12h</p>
+      <h2>Dia 13</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-13" data-day="13"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-13.jpg" alt="Story do dia 13" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-13.jpg" data-name="story-dia-13.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-13.jpg" download="story-dia-13.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha CONTAGEM REGRESSIVA (dia 03/11 às 19h) + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Nome da contagem</span><span class="val">Todos os links da penteadeira</span><button type="button" class="cp" data-text="Todos os links da penteadeira">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira</span><button type="button" class="cp" data-text="https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Todos os links 💜</span><button type="button" class="cp" data-text="Todos os links 💜">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · Tá quase pronta!</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-14" data-date="2026-11-02">
+  <header class="dh">
+    <div>
+      <p class="when">seg 02/11 · story às 12h</p>
+      <h2>Dia 14</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-14" data-day="14"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-14.jpg" alt="Story do dia 14" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-14.jpg" data-name="story-dia-14.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-14.jpg" download="story-dia-14.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha ENQUETE (4 opções) + figurinha LINK</p>
+      <ul class="copies">
+        <li><span class="lab">Pergunta</span><span class="val">Qual seu item favorito?</span><button type="button" class="cp" data-text="Qual seu item favorito?">Copiar</button></li><li><span class="lab">Opção 1</span><span class="val">Base</span><button type="button" class="cp" data-text="Base">Copiar</button></li><li><span class="lab">Opção 2</span><span class="val">Espelho</span><button type="button" class="cp" data-text="Espelho">Copiar</button></li><li><span class="lab">Opção 3</span><span class="val">Cadeira</span><button type="button" class="cp" data-text="Cadeira">Copiar</button></li><li><span class="lab">Opção 4</span><span class="val">Luz</span><button type="button" class="cp" data-text="Luz">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira</span><button type="button" class="cp" data-text="https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Ver todos os itens</span><button type="button" class="cp" data-text="Ver todos os itens">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Reels</strong> · Se só pudesse escolher um?</p>
+    </div>
+  </div>
+</article>
+<article class="day" id="dia-15" data-date="2026-11-03">
+  <header class="dh">
+    <div>
+      <p class="when">ter 03/11 · story às 12h</p>
+      <h2>Dia 15</h2>
+    </div>
+    <label class="done"><input type="checkbox" id="feito-15" data-day="15"> Postado</label>
+  </header>
+  <div class="body">
+    <figure class="shot"><img src="s/dia-15.jpg" alt="Story do dia 15" loading="lazy"><div class="acts"><button type="button" class="ig" data-img="s/dia-15.jpg" data-name="story-dia-15.jpg">Enviar pro Instagram</button><a class="dl" href="s/dia-15.jpg" download="story-dia-15.jpg">Baixar imagem</a></div></figure>
+    <div class="info">
+      <p class="sticker">Figurinha LINK + texto</p>
+      <ul class="copies">
+        <li><span class="lab">Texto</span><span class="val">Obrigada por acompanhar o diário 💜</span><button type="button" class="cp" data-text="Obrigada por acompanhar o diário 💜">Copiar</button></li><li><span class="lab">Link</span><span class="val">https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira</span><button type="button" class="cp" data-text="https://sabrinagui.github.io/achadinnapromo/#monte-sua-mini-penteadeira">Copiar</button></li><li><span class="lab">Texto do link</span><span class="val">Todos os links 💜</span><button type="button" class="cp" data-text="Todos os links 💜">Copiar</button></li>
+      </ul>
+      <p class="feed">No feed hoje (19h): <strong>Carrossel</strong> · Todos os links num lugar só</p>
+    </div>
+  </div>
+</article></div>
+</div>
+<script>
+(function(){
+  var KEY="stories-penteadeira-feitos";
+  var done={};
+  try{done=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  function paint(){
+    document.querySelectorAll(".day").forEach(function(el){var d=el.id.slice(4);el.classList.toggle("isdone",!!done[d]);});
+    document.querySelectorAll(".jump a").forEach(function(a){a.classList.toggle("isdone",!!done[a.dataset.day]);});
+  }
+  document.querySelectorAll(".done input").forEach(function(cb){
+    cb.checked=!!done[cb.dataset.day];
+    cb.addEventListener("change",function(){done[cb.dataset.day]=cb.checked;save();paint();});
+  });
+  document.querySelectorAll(".cp").forEach(function(b){
+    b.addEventListener("click",function(){
+      var t=b.dataset.text;
+      function ok(){b.textContent="Copiado";b.classList.add("ok");setTimeout(function(){b.textContent="Copiar";b.classList.remove("ok");},1400);}
+      function fallback(){var v=b.parentNode.querySelector(".val");var r=document.createRange();r.selectNodeContents(v);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selecionado";}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fallback);}else{fallback();}
+    });
+  });
+  var now=new Date();var today=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+  var el=document.querySelector('.day[data-date="'+today+'"]');
+  if(el){el.classList.add("today");var a=document.querySelector('.jump a[data-day="'+el.id.slice(4)+'"]');if(a)a.classList.add("today");if(!location.hash)setTimeout(function(){el.scrollIntoView();},60);}
+  paint();
+  // "Enviar pro Instagram": abre o menu de compartilhar do celular com a imagem.
+  document.querySelectorAll(".ig").forEach(function(b){
+    b.addEventListener("click",function(){
+      fetch(b.dataset.img).then(function(r){return r.blob();}).then(function(blob){
+        var file=new File([blob],b.dataset.name,{type:"image/jpeg"});
+        if(navigator.canShare&&navigator.canShare({files:[file]})){
+          return navigator.share({files:[file]}).catch(function(){});
+        }
+        var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=b.dataset.name;document.body.appendChild(a);a.click();a.remove();
+        b.textContent="Imagem baixada";
+      });
+    });
+  });
+})();
+</script></body></html>
